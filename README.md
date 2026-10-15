@@ -4,6 +4,18 @@ Three classes: **pen** (including pencil), **screwdriver**, and **screw**.
 Background photographs confirmed by the dataset owner are kept without `.txt`
 files; YOLO treats their absence as no target objects. There is no fourth class.
 
+## Train on Colab GPU
+
+[Open the Colab notebook](https://colab.research.google.com/github/omar-salem23/WoodWorkShop/blob/main/notebooks/train_colab.ipynb).
+Choose **Runtime → Change runtime type → GPU**, then **Runtime → Run all**.
+Authorize Google Drive when prompted. The notebook downloads and audits the
+dataset, trains on GPU, retries when validation is below target, and saves
+checkpoints and final metrics in `MyDrive/WoodWorkShop_runs`.
+It starts a separate training run; it does not stop or resume the cloud CPU run.
+GPU allocation is controlled by Colab and is not guaranteed. If batch 16 exceeds
+available GPU memory, reduce it to 8 in the training cell. The notebook has been
+syntax-checked; an actual Colab GPU session must be started by the account owner.
+
 ## Environment
 
 Python 3.12 and Ultralytics 8.4.177 were checked in this environment.
