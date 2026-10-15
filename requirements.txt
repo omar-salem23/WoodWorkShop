@@ -1,0 +1,4 @@
+ultralytics==8.4.177
+PyYAML==6.0.3
+gdown==6.4.2
+faster-coco-eval==1.8.0
