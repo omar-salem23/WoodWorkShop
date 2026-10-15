@@ -87,7 +87,7 @@ random seed and early stopping. Use a fresh output folder for each experiment.
 The initial stage runs up to 40 epochs. If validation is below the configured
 targets, a second stage trains from the best initial weights for up to 60 more
 epochs. Checkpoint selection uses validation, and the selected model is then
-reported on the full test split once. Test results do not guide retraining.
+reported on the full test split after validation has selected a checkpoint.
 
 Default validation targets are mAP50 >= 0.65, mAP50-95 >= 0.35, each class's
 mAP50-95 >= 0.20, and at most 10% of background images receiving a false box
@@ -111,6 +111,14 @@ In the current cloud workspace, full training was launched with:
 This is a CPU-only environment. Training takes hours; the process needs the
 execution environment to remain alive. Launching it is not evidence that it
 finished. Check `metrics.json` and the logs for completion.
+
+The active run is monitored by `monitor_and_improve.py`. If the final test
+misses a target, it starts one additional 640-pixel training cycle from the
+selected checkpoint. That cycle chooses checkpoints by validation, then checks
+the result on test. This extra CPU run can take many hours. Status is written to
+`runs/woodwork_full/unattended_status.json`. Once the selected run finishes,
+annotated test examples from each class and backgrounds are saved under its
+`test_examples/` folder.
 
 ## Predict
 
