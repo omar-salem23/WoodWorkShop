@@ -138,6 +138,27 @@ Run inference with:
 yolo predict model=models/best.pt source=/path/to/photos conf=0.25 save=True device=cpu
 ```
 
+## Run the detector on your computer
+
+1. Download the repository, including [`models/best.pt`](models/best.pt).
+2. Install Python 3.10 or newer and Ultralytics:
+
+```bash
+python -m pip install ultralytics==8.4.177
+```
+
+3. Run it on one image or a folder of images:
+
+```bash
+python predict.py /path/to/photo.jpg
+python predict.py /path/to/photos --device cpu
+```
+
+The script saves images with predicted boxes and confidence scores in
+`runs/predictions/results/`. For a supported NVIDIA GPU, install the matching
+CUDA PyTorch build, then run `python predict.py /path/to/photo.jpg --device 0`.
+GitHub stores the model and code; use your computer or Colab to execute them.
+
 ## Predict
 
 After training, use the selected checkpoint path recorded in `metrics.json`:
