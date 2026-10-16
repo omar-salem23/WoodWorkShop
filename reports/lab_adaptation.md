@@ -35,6 +35,9 @@ Inference through `predict.py` removes screwdriver boxes within 2% of an image
 edge. This follows the requested rule to count only complete, handled
 screwdrivers; complete tools placed very close to an edge can also be
 suppressed. Set `--screwdriver-edge-margin 0` to disable the filter.
+On 14 additional cropped screwdriver-detail frames that were not used to train
+the published weights, the filter removed all screwdriver detections while
+retaining detections on separate images of complete handled tools.
 
 The mixed-domain validation mAP50 / mAP50-95 peaked at 96.3% / 79.3%. The new
 workshop validation scored 66.6% / 33.5%; its small size also limits how much
