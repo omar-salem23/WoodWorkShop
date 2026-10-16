@@ -164,6 +164,10 @@ Use the adapted weights by selecting them explicitly:
 python predict.py /path/to/photos --model models/lab_adapted_best.pt --conf 0.25
 ```
 
+`predict.py` removes screwdriver boxes within 2% of an image edge, following
+the label rule that only complete, handled screwdrivers count. Adjust
+`--screwdriver-edge-margin`, or set it to `0`, to change or disable this filter.
+
 ## Run the detector on your computer
 
 1. Download the repository, including [`models/best.pt`](models/best.pt).
