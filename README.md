@@ -138,6 +138,32 @@ Run inference with:
 yolo predict model=models/best.pt source=/path/to/photos conf=0.25 save=True device=cpu
 ```
 
+## Workshop lab adaptation
+
+An additional model fine-tuned on selected, manually labeled photos from the
+owner's workshop is available as [`models/lab_adapted_best.pt`](models/lab_adapted_best.pt).
+The original `models/best.pt` remains the general-purpose model. The adapted
+weights were trained with a balanced replay sample from the original dataset
+to retain its performance while improving on the new workshop photos.
+
+On the 10-image workshop holdout (8 labeled objects, 6 background images), the
+adapted model scored mAP50 67.5% and mAP50-95 27.0%, compared with 52.6% and
+24.6% for the original model on the same split. It produced no detections at
+confidence 0.25 on the six empty workshop photos. On the original 920-image
+test set it scored 93.4% / 75.9%, close to the original model's documented
+93.7% / 78.1%. The workshop holdout is small, and a tiny screw fixed into a
+wood panel was detected only at very low confidence; the model may miss such
+small screws at the default 0.25 threshold.
+
+- [Workshop holdout predictions](previews/lab_adaptation/heldout_predictions.jpg)
+- [Adaptation metrics and limits](reports/lab_adaptation.md)
+
+Use the adapted weights by selecting them explicitly:
+
+```bash
+python predict.py /path/to/photos --model models/lab_adapted_best.pt --conf 0.25
+```
+
 ## Run the detector on your computer
 
 1. Download the repository, including [`models/best.pt`](models/best.pt).
