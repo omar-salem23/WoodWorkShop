@@ -1,0 +1,47 @@
+{
+  "classes": [
+    "pen",
+    "screwdriver",
+    "screw"
+  ],
+  "checkpoint": "models/best.pt",
+  "validation": {
+    "map50": 0.9312589407348241,
+    "map50_95": 0.7796671611459561,
+    "per_class_map50_95": [
+      0.8625061695561959,
+      0.6310428835232117,
+      0.8454524303584607
+    ],
+    "background": {
+      "confidence": 0.25,
+      "images": 402,
+      "images_with_false_detections": 9,
+      "false_boxes": 13,
+      "image_false_positive_rate": 0.022388059701492536
+    }
+  },
+  "test": {
+    "map50": 0.9367456713352461,
+    "map50_95": 0.7805367992371434,
+    "per_class_map50_95": [
+      0.8292676517157647,
+      0.6622944935284066,
+      0.850048252467259
+    ],
+    "background": {
+      "confidence": 0.25,
+      "images": 250,
+      "images_with_false_detections": 4,
+      "false_boxes": 4,
+      "image_false_positive_rate": 0.016
+    }
+  },
+  "targets": {
+    "map50": 0.65,
+    "map50_95": 0.35,
+    "per_class_map50_95": 0.2,
+    "max_background_image_false_positive_rate": 0.1
+  },
+  "meets_validation_targets": true
+}

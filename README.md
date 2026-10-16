@@ -120,6 +120,24 @@ the result on test. This extra CPU run can take many hours. Status is written to
 annotated test examples from each class and backgrounds are saved under its
 `test_examples/` folder.
 
+## Latest CPU training result
+
+The completed CPU run met all configured targets; no additional training cycle
+was needed. On 920 held-out test images, mAP50 was 93.7% and mAP50-95 was
+78.1%. Class mAP50-95 was 82.9% for pens, 66.2% for screwdrivers, and 85.0%
+for screws. Four of 250 background images received a detection at confidence
+0.25 or above (1.6%).
+
+- [Selected trained weights](models/best.pt)
+- [Test metrics](previews/test_predictions/metrics.json)
+- [Ten annotated test examples](previews/test_predictions/overview.jpg)
+
+Run inference with:
+
+```bash
+yolo predict model=models/best.pt source=/path/to/photos conf=0.25 save=True device=cpu
+```
+
 ## Predict
 
 After training, use the selected checkpoint path recorded in `metrics.json`:
