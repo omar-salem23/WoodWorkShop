@@ -1,0 +1,51 @@
+{
+  "model": "models/lab_adapted_best.pt",
+  "run": "runs/lab_adaptation_mixed_v5/finetune_mixed",
+  "training": {
+    "device": "cpu",
+    "epochs": 12,
+    "imgsz": 640,
+    "batch": 16,
+    "optimizer": "AdamW",
+    "lr0": 0.00015,
+    "workshop_source_frames_train": 48,
+    "workshop_train_images_with_augmentation": 192,
+    "original_replay_images": 530
+  },
+  "validation_mixed": {
+    "images": 174,
+    "map50": 0.958,
+    "map50_95": 0.788
+  },
+  "lab_workshop_holdout": {
+    "images": 10,
+    "instances": 8,
+    "background_images": 6,
+    "map50": 0.8738901098901098,
+    "map50_95": 0.349537404978534,
+    "per_class_map50_95": {
+      "pen": 0.252612214935602,
+      "screwdriver": 0.49749999999999994,
+      "screw": 0.2985
+    },
+    "detections_at_conf_0_25_after_complete_screwdriver_edge_filter": 7,
+    "background_images_with_detections_after_filter": 0
+  },
+  "old_920_image_test": {
+    "images": 920,
+    "map50": 0.9295934991786297,
+    "map50_95": 0.758448668307942,
+    "per_class_map50_95": {
+      "pen": 0.8298527103350455,
+      "screwdriver": 0.6149895689213538,
+      "screw": 0.8305037256674271
+    }
+  },
+  "previous_published_model": {
+    "lab_workshop_holdout_map50": 0.6748333333333334,
+    "lab_workshop_holdout_map50_95": 0.26961666666666667,
+    "old_920_image_test_map50": 0.9338457022555969,
+    "old_920_image_test_map50_95": 0.7592282466425525
+  },
+  "limits": "Only 63 of the 113 uploaded source frames are labeled across train/val/test; remaining frames were not auto-labeled or used. The workshop test has only 8 objects and 6 backgrounds."
+}
