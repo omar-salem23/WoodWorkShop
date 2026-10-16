@@ -22,8 +22,9 @@ def main() -> None:
         raise FileNotFoundError(f'Model not found: {args.model}')
     model = YOLO(str(args.model))
     device = None if args.device == 'auto' else args.device
+    output_dir = args.output.resolve()
     results = model.predict(source=str(args.source), conf=args.conf,
-        device=device, save=True, project=str(args.output), name='results', exist_ok=True)
+        device=device, save=True, project=str(output_dir), name='results', exist_ok=True)
     for result in results:
         counts = {}
         for box in result.boxes:
@@ -31,7 +32,7 @@ def main() -> None:
             name = model.names[class_id]
             counts[name] = counts.get(name, 0) + 1
         print(f'{Path(result.path).name}: {counts or "no detections"}')
-    print(f'Annotated images saved in: {args.output.resolve() / "results"}')
+    print(f'Annotated images saved in: {output_dir / "results"}')
 
 
 if __name__ == '__main__':
